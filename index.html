@@ -1,200 +1,35 @@
 <!doctype html>
 <!--
-  Online Care Guide — homepage, design direction A3.
-  Reference build from 03-spec/A3-Developer-Handoff.md and the A3 artboards in 02-design/.
+  Online Care Guide — homepage, design direction A3. Styles: assets/site.css.
 
-  BRAND SWITCH: data-brand on <html> is "separate" (umbrella site, default) or "consumermed"
-  (ConsumerMed root page). It swaps the wordmark, the weight-management attribution and the
-  disclosure. In "consumermed" mode also change both weight hrefs (search: data-todo="WEIGHT").
+  SWITCHES on <html>:
+  - data-brand="separate" (umbrella site, default) | "consumermed" (ConsumerMed root page).
+    Swaps the wordmark, weight attribution, ownership note, footer commercial text and copyright name.
+    ConsumerMed mode also needs both data-todo="WEIGHT" hrefs changed and the content-pack section 7
+    substitutions applied to every page.
+  - data-hrt="active" (HRT comparison is live) | "interim" (unavailable; links go to menopause-hrt/).
+    Set the same value on every page.
 
-  BEFORE GOING LIVE: resolve every data-todo below; no placeholder link may remain. See 04-publishing.
+  BEFORE GOING LIVE: resolve every data-todo and every highlighted field in square brackets; no placeholder may remain. See 04-publishing.
 -->
-<html lang="en" data-brand="separate">
+<html lang="en" data-brand="separate" data-hrt="active">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Online Care Guide</title>
-<meta name="description" content="Explore online services for weight management and menopause care. Choose a topic to learn about the options and compare what different providers offer.">
+<title>Online Care Guide | Weight Management and Menopause Care</title>
+<meta name="description" content="Explore online care resources for weight management and menopause. Compare program information, understand practical differences, and continue your research.">
+<meta property="og:title" content="Online Care Guide">
+<meta property="og:description" content="A starting point for exploring online weight management and menopause care.">
+<meta property="og:type" content="website">
 <!-- INTERIM: keeps the working-title site out of search results. Remove at the final launch. -->
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap">
-<style>
-:root{
-  --color-ink:#15191E;
-  --color-text:#3A424C;
-  --color-text-muted:#4A525C;
-  --color-bg:#FFFFFF;
-  --color-bg-subtle:#F3F4F2;
-  --color-border:#D9DCDF;
-  --color-border-subtle:#E3E5E7;
-  --color-rule:#C9CDD1;
-  --color-weight:#0F5E5A;
-  --color-weight-hover:#0A4744;
-  --color-weight-tint:#F1F6F5;
-  --color-weight-rule:#C5D8D5;
-  --color-meno:#6B2F5B;
-  --color-meno-hover:#52223F;
-  --color-meno-tint:#F8F2F6;
-  --color-meno-rule:#E0CCD8;
-  --color-footer-text:#E6E8EB;
-  --color-footer-body:#C3C9D0;
-  --color-footer-label:#9AA3AD;
-  --color-footer-divider:#343B44;
-  --font-display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
-  --font-text:'Inter','Helvetica Neue',Arial,sans-serif;
-  --gutter:clamp(20px,4vw,40px);
-}
-
-/* Brand switch */
-html[data-brand="separate"] [data-only="consumermed"],
-html[data-brand="consumermed"] [data-only="separate"]{display:none !important}
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--color-bg);color:var(--color-ink);font-family:var(--font-text);-webkit-font-smoothing:antialiased}
-a{color:var(--color-ink)}
-a:hover{color:var(--color-weight)}
-a:focus-visible{outline:3px solid var(--color-weight);outline-offset:3px}
-svg{flex:none}
-.container{max-width:1240px;margin:0 auto;padding-inline:var(--gutter)}
-
-/* Header */
-.site-header{border-bottom:1px solid var(--color-border)}
-.site-header__bar{min-height:76px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}
-.wordmark{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--color-ink);font-family:var(--font-display);font-weight:600;font-size:23px;letter-spacing:-0.02em;white-space:nowrap}
-.wordmark:hover{color:var(--color-ink)}
-.wordmark__light{font-weight:400;color:var(--color-text-muted)}
-.nav{display:flex;align-items:center;gap:4px}
-.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap}
-.nav a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-
-/* Opening */
-.opening{padding-top:88px;padding-bottom:72px}
-.kicker{margin:0 0 28px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
-.opening__row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:32px 72px}
-.opening h1{flex:1 1 620px;margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(40px,4.4vw,64px);line-height:1.04;letter-spacing:-0.035em;text-wrap:balance}
-.opening__aside{flex:1 1 340px;max-width:440px}
-.lead{margin:0;font-size:18px;line-height:1.6;color:var(--color-text)}
-.text-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:16px;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-.opening .text-link{margin-top:20px}
-
-/* Topics */
-.topics{padding-bottom:112px;scroll-margin-top:16px}
-.topics__head{border-top:2px solid var(--color-ink);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
-.topics__head h2{margin:0;font-family:var(--font-display);font-weight:500;font-size:28px;line-height:1.2;letter-spacing:-0.02em;text-wrap:balance}
-.topics__sub{margin:0;font-size:15px;line-height:1.5;color:var(--color-text-muted)}
-.topics__grid{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:40px}
-
-.card{--accent:var(--color-weight);--accent-hover:var(--color-weight-hover);--tint:var(--color-weight-tint);--rule:var(--color-weight-rule);
-  background:var(--tint);border-top:6px solid var(--accent);padding:36px 44px 44px;display:flex;flex-direction:column;gap:22px}
-.card--meno{--accent:var(--color-meno);--accent-hover:var(--color-meno-hover);--tint:var(--color-meno-tint);--rule:var(--color-meno-rule)}
-.card__num{font-family:var(--font-display);font-weight:500;font-size:44px;line-height:1;letter-spacing:-0.04em;color:var(--accent)}
-.card h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(28px,2.4vw,34px);line-height:1.1;letter-spacing:-0.025em;text-wrap:balance}
-.card__desc{margin:0;font-size:17px;line-height:1.6;color:var(--color-text)}
-.label{margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
-.compare-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
-.compare-list li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px;font-weight:500}
-.card__cta{margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;background:var(--accent);color:#FFFFFF;text-decoration:none;font-size:16px;font-weight:600;border-radius:2px;transition:background-color .15s ease}
-.btn:hover{background:var(--accent-hover);color:#FFFFFF}
-.btn:active{transform:translateY(1px)}
-/* Interim "coming soon" state for a topic whose destination is not ready (see 04-publishing) */
-.btn--soon{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);cursor:default}
-.btn--soon:hover{background:transparent;color:var(--accent)}
-.btn--soon:active{transform:none}
-.attribution{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--color-text-muted)}
-.attribution > span{display:inline-flex;align-items:center;gap:6px}
-
-/* Comparison questions */
-.compare{background:var(--color-bg-subtle);border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle)}
-.compare__inner{padding-top:104px;padding-bottom:104px;display:flex;flex-wrap:wrap;gap:48px 80px}
-.compare__intro{flex:1 1 320px;max-width:400px}
-.compare__intro h2{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-0.03em;text-wrap:balance}
-.compare__intro p{margin:20px 0 0;font-size:17px;line-height:1.6;color:var(--color-text)}
-.questions{flex:999 1 560px;list-style:none;margin:0;padding:0;border-top:1px solid var(--color-ink)}
-.questions li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:0 24px;padding:28px 0;border-bottom:1px solid var(--color-rule)}
-.questions__num{font-family:var(--font-display);font-weight:500;font-size:22px;line-height:1.3;color:var(--color-text-muted)}
-.questions h3{margin:0;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;line-height:1.5;color:var(--color-text-muted)}
-.questions p{margin:8px 0 0;font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1.35;letter-spacing:-0.015em;color:var(--color-ink)}
-
-/* About */
-.about{padding-top:112px;padding-bottom:120px;scroll-margin-top:16px}
-.about__inner{max-width:820px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
-.about .kicker{margin:0}
-.about h2{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(32px,3vw,42px);line-height:1.1;letter-spacing:-0.03em;text-wrap:balance}
-.about__body{margin:0;font-size:19px;line-height:1.65;color:var(--color-text);text-wrap:pretty}
-.about__links{margin-top:6px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 36px}
-.about__links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:16px;font-weight:600;text-decoration-thickness:1px;text-underline-offset:6px}
-.about__links .is-weight{color:var(--color-weight)}
-.about__links .is-weight:hover{color:var(--color-weight-hover)}
-.about__links .is-meno{color:var(--color-meno)}
-.about__links .is-meno:hover{color:var(--color-meno-hover)}
-
-/* Footer */
-.site-footer{background:var(--color-ink);color:var(--color-footer-text)}
-.site-footer__inner{padding-top:64px;padding-bottom:52px;display:flex;flex-direction:column;gap:36px}
-.site-footer__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px 64px}
-.footer-wordmark{margin:0;font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-0.02em;color:#FFFFFF}
-.footer-wordmark .wordmark__light{color:var(--color-footer-body)}
-.footer-nav{display:flex;flex-wrap:wrap;gap:0 28px}
-.footer-nav a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:none;color:var(--color-footer-text)}
-.footer-nav a:hover{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-.site-footer a:focus-visible{outline-color:#FFFFFF}
-.site-footer__info{border-top:1px solid var(--color-footer-divider);padding-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:24px 64px}
-.footer-label{margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-footer-label)}
-.footer-copy{margin:0;font-size:14px;line-height:1.65;color:var(--color-footer-body)}
-
-/* Mobile (< 640px): values from the A3 mobile artboard */
-@media (max-width:639px){
-  .site-header__bar{min-height:63px;gap:6px;padding-right:14px}
-  .wordmark{font-size:18px}
-  .nav{gap:0}
-  .nav a{padding:0 8px;font-size:14px}
-  .opening{padding-top:40px;padding-bottom:36px}
-  .kicker{margin-bottom:20px;font-size:12px}
-  .opening__row{gap:20px}
-  .opening h1{font-size:38px;line-height:1.06}
-  .lead{font-size:16px}
-  .opening .text-link{margin-top:14px}
-  .topics{padding-bottom:64px}
-  .topics__head{flex-direction:column;align-items:flex-start;padding-top:16px;gap:8px}
-  .topics__head h2{font-size:24px}
-  .topics__grid{margin-top:24px;gap:20px}
-  .card{border-top-width:5px;padding:26px 22px 28px;gap:18px}
-  .card__num{font-size:32px}
-  .card h3{font-size:26px;line-height:1.12}
-  .card__desc{font-size:15px}
-  .label{margin-bottom:6px;font-size:11px}
-  .compare-list li{padding:11px 0;font-size:15px}
-  .card__cta{flex-direction:column;align-items:stretch;gap:10px;padding-top:4px}
-  .btn{display:flex;justify-content:space-between;padding:0 20px}
-  .attribution{font-size:13px}
-  .compare__inner{padding-top:64px;padding-bottom:64px;gap:28px}
-  .compare__intro h2{font-size:30px}
-  .compare__intro p{margin-top:16px;font-size:16px}
-  .questions li{grid-template-columns:34px minmax(0,1fr);gap:0 12px;padding:22px 0}
-  .questions__num{font-size:18px}
-  .questions h3{font-size:12px}
-  .questions p{margin-top:6px;font-size:20px}
-  .about{padding-top:72px;padding-bottom:80px}
-  .about__inner{gap:18px}
-  .about .kicker{font-size:12px}
-  .about h2{font-size:30px;line-height:1.12}
-  .about__body{font-size:16px}
-  .about__links{flex-direction:column;align-items:center;gap:4px;margin-top:0}
-  .site-footer__inner{padding-top:48px;padding-bottom:44px;gap:24px}
-  .site-footer__top{flex-direction:column;align-items:flex-start;gap:24px}
-  .footer-wordmark{font-size:20px}
-  .footer-nav{gap:0 22px}
-  .site-footer__info{grid-template-columns:1fr;padding-top:24px;gap:22px}
-  .footer-label{margin-bottom:6px;font-size:11px}
-}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container site-header__bar">
@@ -204,18 +39,18 @@ svg{flex:none}
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#topics">Explore Care</a>
-      <a href="#about">About</a>
+      <a href="about/">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
   <section class="container opening" aria-labelledby="page-title">
     <p class="kicker">Weight management · Menopause care</p>
     <div class="opening__row">
       <h1 id="page-title">Make sense of your online care options</h1>
       <div class="opening__aside">
-        <p class="lead">Explore online services for weight management and menopause care. Choose a topic to learn about the options and compare what different providers offer.</p>
+        <p class="lead" data-hrt-only="active">Explore online services for weight management and menopause care. Choose a topic to learn about the options and compare what different providers offer.</p>
         <a class="text-link" href="#topics">Explore Care Topics<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></a>
       </div>
     </div>
@@ -224,7 +59,7 @@ svg{flex:none}
   <section class="container topics" id="topics" aria-labelledby="topics-title">
     <div class="topics__head">
       <h2 id="topics-title">What would you like to explore?</h2>
-      <p class="topics__sub">Each topic opens a focused guide and provider comparison.</p>
+      <p class="topics__sub" data-hrt-only="active">Each topic opens a focused guide and provider comparison.</p>
     </div>
 
     <div class="topics__grid">
@@ -240,9 +75,13 @@ svg{flex:none}
             <li>Ongoing support</li>
           </ul>
         </div>
+        <p class="card__note" id="weight-note">
+          <span data-only="separate">ConsumerMed is under common ownership with Online Care Guide and may receive referral fees from providers it features. <a href="disclosure/">Read our Disclosure</a>.</span>
+          <span data-only="consumermed">We may receive referral fees from providers featured in our comparisons. <a href="disclosure/">Read our Disclosure</a>.</span>
+        </p>
         <div class="card__cta">
-          <!-- data-todo="WEIGHT": in consumermed mode replace this href with the weight comparison's new path -->
-          <a class="btn" href="https://www.consumermed.org/" aria-describedby="weight-attr" data-todo="WEIGHT">Explore Weight Management<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+          <!-- data-todo="WEIGHT": in consumermed mode replace this href with the weight comparison's internal path -->
+          <a class="btn" href="https://www.consumermed.org/" aria-describedby="weight-attr" data-todo="WEIGHT" target="_blank" rel="noopener">Explore Weight Management<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a>
           <span class="attribution" id="weight-attr">
             <span data-only="separate">Continues on ConsumerMed<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span>
             <span data-only="consumermed">Opens our weight management comparison</span>
@@ -253,20 +92,21 @@ svg{flex:none}
       <article class="card card--meno" aria-labelledby="meno-title">
         <span class="card__num" aria-hidden="true">02</span>
         <h3 id="meno-title">Menopause &amp; HRT</h3>
-        <p class="card__desc">Explore online services for perimenopause and menopause, including hormone replacement therapy (HRT). Learn about different providers and compare information on consultations, costs, and ongoing support.</p>
+        <p class="card__desc" data-hrt-only="active">Explore online services for perimenopause and menopause, including hormone replacement therapy (HRT). Learn about different providers and compare information on consultations, costs, and ongoing support.</p>
         <div>
-          <p class="label" id="meno-compare">What you can compare</p>
+          <p class="label" id="meno-compare"><span data-hrt-only="active">What you can compare</span></p>
           <ul class="compare-list" aria-labelledby="meno-compare">
             <li>Consultations</li>
             <li>Costs</li>
             <li>Ongoing support</li>
           </ul>
         </div>
-        <div class="card__cta">
-          <!-- data-todo="HRT": interim "coming soon" state. When the HRT URL is ready, restore the
-               <a class="btn" … aria-describedby="meno-attr"> CTA and the "Opens our menopause & HRT comparison" line. -->
-          <span class="btn btn--soon" data-todo="HRT">Menopause &amp; HRT guide coming soon</span>
-          <span class="attribution" id="meno-attr">Our menopause &amp; HRT comparison is on its way</span>
+        <!-- Optional, active state only, once the arrangement is confirmed (content pack, section 6):
+             <p class="card__note">The linked menopause and HRT guide is under common ownership with Online Care Guide and may receive referral fees from featured providers. <a href="disclosure/">Read our Disclosure</a>.</p> -->
+        <div class="card__cta" data-hrt-only="active">
+          <!-- data-todo="HRT": replace with the verified HRT resource URL from the owner (never the old third-party HRT domain; see CLAUDE.md) -->
+          <a class="btn" href="#HRT_DESTINATION_TBD" aria-describedby="meno-attr" data-todo="HRT">Explore Menopause &amp; HRT<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+          <span class="attribution" id="meno-attr">Opens our menopause &amp; HRT comparison</span>
         </div>
       </article>
     </div>
@@ -308,10 +148,11 @@ svg{flex:none}
     <div class="about__inner">
       <p class="kicker">About the guide</p>
       <h2 id="about-title">A starting point for exploring online care</h2>
-      <p class="about__body">We bring together focused guides and provider comparisons across weight management and menopause care. Our aim is to help you understand what different services offer and decide where to continue your research.</p>
+      <p class="about__body" data-hrt-only="active">We bring together focused guides and provider comparisons across weight management and menopause care. Our aim is to help you understand what different services offer and decide where to continue your research.</p>
+      <a class="text-link about__more" href="about/">More about the guide<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
       <div class="about__links">
-        <a class="is-weight" href="https://www.consumermed.org/" data-todo="WEIGHT">Weight Management &amp; GLP-1<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
-        <!-- data-todo="HRT": add the Menopause &amp; HRT link (class="is-meno") here once its URL is ready. -->
+        <a class="is-weight" href="https://www.consumermed.org/" data-todo="WEIGHT" target="_blank" rel="noopener">Weight Management &amp; GLP-1<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="is-meno" href="#HRT_DESTINATION_TBD" data-todo="HRT" data-hrt-only="active">Menopause &amp; HRT<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -325,8 +166,11 @@ svg{flex:none}
         <span data-only="consumermed">ConsumerMed</span>
       </p>
       <nav class="footer-nav" aria-label="Footer">
-        <a href="#about">About</a>
-        <!-- data-todo="FOOTER": Contact, Privacy Policy, Terms and Disclosure links go here once they have URLs. -->
+        <a href="about/">About</a>
+        <a href="contact/">Contact</a>
+        <a href="privacy/">Privacy Policy</a>
+        <a href="terms/">Terms</a>
+        <a href="disclosure/">Disclosure</a>
       </nav>
     </div>
     <div class="site-footer__info">
@@ -335,10 +179,14 @@ svg{flex:none}
         <p class="footer-copy">For general information only. We do not provide medical advice, diagnosis, treatment, or prescriptions. Speak with a licensed healthcare professional about medical questions and treatment options.</p>
       </div>
       <div>
-        <p class="footer-label">Disclosure</p>
-        <p class="footer-copy" data-only="separate">Some comparison resources linked from this site may receive referral fees from the providers they feature. See each resource's disclosure for details.</p>
-        <p class="footer-copy" data-only="consumermed">We may receive referral fees from providers featured in our comparisons. See our disclosure for details.</p>
+        <p class="footer-label">Commercial relationships</p>
+        <p class="footer-copy" data-only="separate">Online Care Guide and ConsumerMed are under common ownership. ConsumerMed may receive referral fees from providers it features. Read our <a href="disclosure/">Disclosure</a> for details.</p>
+        <p class="footer-copy" data-only="consumermed">We may receive referral fees from providers featured in our comparisons. Compensation may influence placement or presentation. Read our <a href="disclosure/">Disclosure</a> for details.</p>
       </div>
+    </div>
+    <div class="site-footer__legal">
+      <p>Operated by <span class="ph">[LEGAL_ENTITY_NAME]</span>.</p>
+      <p>© 2026 <span data-only="separate">Online Care Guide</span><span data-only="consumermed">ConsumerMed</span>. All rights reserved.</p>
     </div>
   </div>
 </footer>
