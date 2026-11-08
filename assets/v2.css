@@ -1,17 +1,17 @@
 /* v2 homepage variant: photo opening (direction A4). Loaded only by v2/index.html, after site.css.
-   The photo sits beside the headline and runs to the right edge; its left edge lines up
-   with the second topic card. Below 900 px it runs full width above the headline. */
-.hero{display:grid;grid-template-columns:[full-start] minmax(var(--gutter),1fr) [text-start] minmax(0,560px) [text-end] 40px [media-start] minmax(0,560px) [content-end] minmax(var(--gutter),1fr) [full-end]}
-.hero__text{grid-column:text-start/text-end;grid-row:1;align-self:center;padding:56px 0 60px}
+   The photo sits beside the headline in the content column, exactly above the second topic
+   card (same left and right edges). Below 900 px it runs full width above the headline. */
+.hero{display:grid;grid-template-columns:[full-start] minmax(var(--gutter),1fr) [text-start] minmax(0,560px) [text-end] 40px [media-start] minmax(0,560px) [content-end] minmax(var(--gutter),1fr) [full-end];padding-top:56px}
+.hero__text{grid-column:text-start/text-end;grid-row:1;align-self:center;padding:0}
 .hero__text h1{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(40px,3.9vw,56px);line-height:1.05;letter-spacing:-0.035em;text-wrap:balance}
 .hero__text .lead{margin-top:28px;max-width:460px}
 .hero__text .text-link{margin-top:20px}
-.hero__media{grid-column:media-start/full-end;grid-row:1;position:relative;min-height:500px;background:var(--color-bg-subtle)}
+.hero__media{grid-column:media-start/content-end;grid-row:1;align-self:center;position:relative;height:clamp(320px,28vw,400px);background:var(--color-bg-subtle)}
 .hero__media img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:48% 50%}
 .hero + .topics{padding-top:64px}
 @media (max-width:899px){
-  .hero{grid-template-columns:[full-start] var(--gutter) [text-start] minmax(0,1fr) [text-end] var(--gutter) [full-end]}
-  .hero__media{grid-column:full-start/full-end;grid-row:1;min-height:0;aspect-ratio:2/1}
+  .hero{grid-template-columns:[full-start] var(--gutter) [text-start] minmax(0,1fr) [text-end] var(--gutter) [full-end];padding-top:0}
+  .hero__media{grid-column:full-start/full-end;grid-row:1;height:auto;aspect-ratio:2/1}
   .hero__text{grid-column:text-start/text-end;grid-row:2;padding:40px 0 56px}
 }
 @media (max-width:639px){
