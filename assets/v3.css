@@ -1,0 +1,84 @@
+/* Online Health Guide: homepage test variant /v3/ (A5, fewer words and bigger topics).
+   Loaded only by v3/index.html, after site.css. Source: 02-design/source/A5-Topics-Desktop.dc.html */
+/* A5: A4 with fewer words and bigger topic tiles. Header, footer and tokens come from site.css. */
+
+/* Opening: headline + one line beside the photo (whole photo, 2:1-ish) */
+.intro{padding-top:48px}
+.intro__inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:40px;align-items:center}
+.intro h1{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(40px,3.9vw,56px);line-height:1.05;letter-spacing:-0.035em;text-wrap:balance}
+.intro .lead{margin-top:20px;max-width:500px}
+.intro__media{position:relative;height:260px;margin:0;background:var(--color-bg-subtle)}
+.intro__media img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.intro + .topics{padding-top:48px}
+
+/* Topic tiles: the whole tile is the link */
+.cats{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.cats--6{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cat{--accent:var(--color-weight);--tint:var(--color-weight-tint);position:relative;display:flex;flex-direction:column;gap:10px;min-height:208px;padding:26px 28px 24px;background:var(--tint);border-top:6px solid var(--accent);transition:background-color .2s ease}
+.cats--2 .cat{min-height:256px;padding:32px 36px 30px}
+.cat--meno{--accent:var(--color-meno);--tint:var(--color-meno-tint)}
+.cat--c3{--accent:#2B4A73;--tint:#F1F4F8}
+.cat--c4{--accent:#7A5418;--tint:#F8F4EC}
+.cat--c5{--accent:#8E3B22;--tint:#F8F1EE}
+.cat--c6{--accent:#4B5A22;--tint:#F3F5EE}
+.cat:hover{background:color-mix(in srgb,var(--tint) 92%,var(--accent))}
+.cat:focus-within{outline:3px solid var(--accent);outline-offset:3px}
+.cat__num{font-family:var(--font-display);font-weight:500;font-size:15px;line-height:1;letter-spacing:.04em;color:var(--accent)}
+.cat__title{margin:6px 0 0;font-family:var(--font-display);font-weight:500;font-size:clamp(28px,2.5vw,36px);line-height:1.08;letter-spacing:-0.025em;text-wrap:balance}
+.cats--2 .cat__title{font-size:clamp(32px,3vw,42px)}
+.cats--6 .cat__title{font-size:clamp(24px,2.1vw,30px)}
+.nw{white-space:nowrap}
+.cat__link{color:var(--color-ink);text-decoration:none}
+.cat__link::after{content:"";position:absolute;inset:0}
+.cat__link:focus-visible{outline:none}
+.cat__desc{margin:0;font-size:16px;line-height:1.5;color:var(--color-text);max-width:440px;text-wrap:pretty}
+.cat__foot{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.cat__arrow{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#FFFFFF;transition:transform .2s ease}
+.cat:hover .cat__arrow{transform:translateX(4px)}
+.cats__note{margin:20px 0 0;max-width:780px;font-size:14px;line-height:1.55;color:var(--color-text-muted)}
+.cats__note a{color:inherit;font-weight:600;text-decoration-thickness:1px;text-underline-offset:3px}
+
+/* Know what you're comparing: three short checks in one band */
+.checks{margin-top:72px;background:var(--color-bg-subtle);border-top:1px solid var(--color-border-subtle);border-bottom:1px solid var(--color-border-subtle)}
+.checks__inner{display:grid;grid-template-columns:minmax(0,1fr);gap:24px 64px;align-items:start;padding-top:44px;padding-bottom:48px}
+.checks h2{margin:0;font-family:var(--font-display);font-weight:500;font-size:26px;line-height:1.2;letter-spacing:-0.02em}
+.checks__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.checks__list li{border-top:1px solid var(--color-ink);padding-top:14px;font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.3;letter-spacing:-0.01em;color:var(--color-ink)}
+.checks__list span{display:block;margin-bottom:8px;font-size:14px;font-weight:500;color:var(--color-text-muted)}
+.checks + .about{padding-top:96px;padding-bottom:104px}
+
+@media (prefers-reduced-motion:reduce){.cat,.cat__arrow{transition:none}}
+@media (max-width:1100px){.cats--6{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899px){
+  .intro{padding-top:0}
+  .intro__inner{grid-template-columns:1fr;gap:24px}
+  .intro__media{order:-1;height:auto;aspect-ratio:3/1;margin-inline:calc(var(--gutter) * -1)}
+  .intro__media img{object-position:50% 12%}
+  .checks__list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:639px){
+  .intro__inner{gap:20px}
+  .intro__media{aspect-ratio:5/2}
+  .intro__media img{object-position:50% 20%}
+  .intro h1{font-size:36px;line-height:1.06}
+  .topics .topics__head h2{font-size:20px}
+  .intro .lead{margin-top:14px}
+  .intro + .topics{padding-top:36px}
+  .cats,.cats--6{margin-top:20px;grid-template-columns:1fr;gap:12px}
+  .cat,.cats--2 .cat{min-height:0;padding:20px 20px 18px;gap:6px;border-top-width:5px}
+  .cat__title,.cats--2 .cat__title{font-size:26px;line-height:1.1}
+  .cat__desc{font-size:15px}
+  .cat__foot{padding-top:10px}
+  .cat__arrow{width:40px;height:40px}
+  .cats__note{font-size:13px}
+  .checks{margin-top:56px}
+  .checks__inner{padding-top:32px;padding-bottom:36px}
+  .checks h2{font-size:22px}
+  .checks__list{grid-template-columns:1fr;gap:16px}
+  .checks__list li{font-size:18px;padding-top:12px}
+  .checks + .about{padding-top:64px;padding-bottom:72px}
+}
+/* Groups for the HRT switch and topics without a guide yet */
+.hrt-group{display:contents}
+.cat--soon:hover{background:var(--tint)}
+.soon{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border-radius:999px;background:#FFFFFF;border:1px solid var(--color-border);font-size:13px;font-weight:600;color:var(--color-text-muted)}
