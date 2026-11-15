@@ -78,17 +78,22 @@
   .checks__list li{font-size:18px;padding-top:12px}
   .checks + .about{padding-top:64px;padding-bottom:72px}
 }
-/* Header from the owner's Figma (15 Nov): wordmark at 18 px; ConsumerMed.org logo at 24 px, centered between the wordmark and the nav, on its own row below 768 px */
+/* Header from the owner's Figma (15 Nov): wordmark at 18 px; ConsumerMed.org logo at 24 px (both parts bold), centered between the wordmark and the nav */
 .site-header .wordmark{font-size:18px}
 .site-header__bar{position:relative}
 .cm-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:24px;line-height:1;color:#043B7B;white-space:nowrap}
-.cm-logo__tld{font-weight:400;color:#86A0B8}
-/* Below 768 px: a more compact header (owner's comment, 15 Nov): smaller logo on its own row, slightly smaller wordmark and nav */
+.cm-logo__tld{font-weight:700;color:#86A0B8}
+/* Below 768 px, from the owner's 390w Figma (15 Nov): the logo sits in a full-width navy band (43 px) above a 41 px row with the wordmark and nav; the photo follows directly, with no rule */
 @media (max-width:767px){
-  .cm-logo{position:static;transform:none;order:-1;flex-basis:100%;text-align:center;padding-top:10px;font-size:20px}
-  .site-header .site-header__bar{row-gap:2px}
-  .site-header .wordmark{font-size:17px;min-height:40px}
-  .site-header .nav a{font-size:13px;min-height:40px}
+  .site-header{position:relative;padding-top:43px;border-bottom:0}
+  .site-header .site-header__bar{position:static;min-height:41px}
+  .cm-logo{top:0;left:0;right:0;height:43px;transform:none;display:flex;align-items:center;justify-content:center;background:#004080;color:#FFFFFF;font-size:21px}
+  .cm-logo__tld{color:#D1D5DC}
+  .site-header .wordmark{font-size:16.5px;min-height:40px}
+  .site-header .nav a{min-height:40px}
+}
+@media (max-width:639px){
+  .site-header .site-header__bar{padding-left:16px}
 }
 /* Groups for the HRT switch and topics without a guide yet */
 .hrt-group{display:contents}
