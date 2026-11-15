@@ -151,6 +151,8 @@ svg{flex:none}
 .prose a{color:var(--color-ink);font-weight:500;text-decoration-thickness:1px;text-underline-offset:4px}
 .prose a:hover{color:var(--color-weight)}
 .prose .links{margin-top:8px}
+.prose h3{margin:28px 0 8px;font-family:var(--font-display);font-weight:500;font-size:19px;line-height:1.3;letter-spacing:-0.01em;color:var(--color-ink)}
+.prose h3:first-child{margin-top:0}
 .page-end{padding-top:40px}
 .single{max-width:760px}
 .single p{margin:0 0 16px;font-size:18px;line-height:1.7;color:var(--color-text)}
